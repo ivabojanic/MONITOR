@@ -179,9 +179,68 @@ void printfInfo(const Monitor &m)
 
     cout<<"---------------"<<endl;
 }
+int meni()
+{
+    int op;
+
+    cout<<"1. Turn ON"<<endl;
+    cout<<"2. Turn OFF"<<endl;
+    cout<<"3. Turn OUT"<<endl;
+    cout<<"4. Turn TEST"<<endl;
+    cout<<"5. Turn STANDBY"<<endl;
+    cout<<"6. Repair"<<endl;
+    cout<<"7. Brightness up"<<endl;
+    cout<<"8. Brightness down"<<endl;
+    cout<<"9. Kraj"<<endl;
+    cin>>op;
+
+    return op;
+}
 
 int main()
 {
-    cout << "Hello world!" << endl;
+    int option;
+    Monitor M;
+    bool prom;
+
+    do
+    {
+
+    option = meni();
+
+    switch(option)
+    {
+    case 1:
+        prom = M.turnOn();
+        break;
+    case 2:
+        prom = M.turnOff();
+        break;
+    case 3:
+        prom = M.turnOut();
+        break;
+    case 4:
+        prom = M.turnTest();
+        break;
+    case 5:
+        prom = M.turnStandby();
+        break;
+    case 6:
+        prom = M.repair();
+        break;
+    case 7:
+        prom = M.incB();
+        break;
+    case 8:
+        prom = M.decB();
+        break;
+    }
+    if (option<1 || option>9)
+        cout<<"The option does not exist!"<<endl;
+    else if(prom == true)
+        printfInfo(M);
+
+    }while(option>=1 && option<=8);
+
     return 0;
 }
